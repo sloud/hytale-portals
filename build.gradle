@@ -44,11 +44,17 @@ javadoc {
     options.addStringOption('Xdoclint:-missing', '-quiet')
 }
 
-// Adds the Hytale server as a build dependency, allowing you to reference and
-// compile against their code. This requires you to have Hytale installed using
-// the official launcher for now.
+repositories {
+    mavenCentral()
+}
+
 dependencies {
+    // Adds the Hytale server as a build dependency, allowing you to reference and
+    // compile against their code. This requires you to have Hytale installed using
+    // the official launcher for now.
     implementation(files("$hytaleHome/install/$patchline/package/game/latest/Server/HytaleServer.jar"))
+    implementation 'com.google.inject:guice:7.0.0'
+    implementation 'org.xerial:sqlite-jdbc:3.45.1.0'
 }
 
 // Create the working directory to run the server if it does not already exist.
