@@ -1,25 +1,30 @@
 package dev.joeyaurel.hytale.portals.commands;
 
-import com.hypixel.hytale.protocol.GameMode;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
+import dev.joeyaurel.hytale.portals.commands.portal.PortalCreateCommand;
 
 import javax.annotation.Nonnull;
 
-/**
- * This is an example command that will simply print the name of the plugin in chat when used.
- */
+@Singleton
 public class PortalCommand extends CommandBase {
 
     private final String pluginName;
     private final String pluginVersion;
 
-    public PortalCommand(String pluginName, String pluginVersion) {
-        super("portal", "Prints a test message from the " + pluginName + " plugin.");
-        this.setPermissionGroup(GameMode.Adventure); // Allows the command to be used by anyone, not just OP
+    @Inject
+    public PortalCommand(PortalCreateCommand portalCreateCommand, String pluginName, String pluginVersion) {
+        super("portal", "Prints basic infos for the " + pluginName + " plugin.");
+
+        this.addAliases("portals");
+
         this.pluginName = pluginName;
         this.pluginVersion = pluginVersion;
+
+        this.addSubCommand(portalCreateCommand);
     }
 
     @Override
