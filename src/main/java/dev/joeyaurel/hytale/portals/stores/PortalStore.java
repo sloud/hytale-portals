@@ -61,4 +61,32 @@ public class PortalStore {
         cachedPortals.removeIf(p -> p.getId().equals(portal.getId()));
         cachedPortals.add(portal);
     }
+
+    public Optional<Portal> findPortalAtLocation(UUID worldId, double x, double y, double z) {
+        return getPortals().stream()
+                .filter(portal -> portal.getWorldId().equals(worldId))
+                .filter(portal -> isLocationInPortalBounds(portal, x, y, z))
+                .findFirst();
+    }
+
+    boolean isLocationInPortalBounds(Portal portal, double x, double y, double z) {
+        List<PortalBound> bounds = portal.getBounds();
+
+        if (bounds.size() < 2) {
+            return false;
+        }
+
+        // Get min and max coordinates from all bounds
+        int minX = bounds.stream().mapToInt(PortalBound::getLocationX).min().orElse(Integer.MAX_VALUE);
+        int maxX = bounds.stream().mapToInt(PortalBound::getLocationX).max().orElse(Integer.MIN_VALUE);
+        int minY = bounds.stream().mapToInt(PortalBound::getLocationY).min().orElse(Integer.MAX_VALUE);
+        int maxY = bounds.stream().mapToInt(PortalBound::getLocationY).max().orElse(Integer.MIN_VALUE);
+        int minZ = bounds.stream().mapToInt(PortalBound::getLocationZ).min().orElse(Integer.MAX_VALUE);
+        int maxZ = bounds.stream().mapToInt(PortalBound::getLocationZ).max().orElse(Integer.MIN_VALUE);
+
+        // Check if the location is within the bounds
+        return x >= minX && x <= maxX &&
+               y >= minY && y <= maxY &&
+               z >= minZ && z <= maxZ;
+    }
 }

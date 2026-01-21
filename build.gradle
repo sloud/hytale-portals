@@ -55,6 +55,17 @@ dependencies {
     implementation(files("$hytaleHome/install/$patchline/package/game/latest/Server/HytaleServer.jar"))
     implementation 'com.google.inject:guice:7.0.0'
     implementation 'org.xerial:sqlite-jdbc:3.45.1.0'
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:6.1.0-M1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:6.1.0-M1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:6.1.0-M1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:6.1.0-M1'
+    testRuntimeOnly 'org.mockito:mockito-core:5.21.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.21.0'
+}
+
+test {
+    useJUnitPlatform()
 }
 
 // Create the working directory to run the server if it does not already exist.
