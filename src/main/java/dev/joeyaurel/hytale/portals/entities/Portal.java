@@ -12,6 +12,7 @@ public class Portal {
     private UUID networkId; // Required - every portal must belong to a network
     private int sortOrder;
     private List<PortalBound> bounds;
+    private PortalDestination destination;
     private UUID createdBy;
     private Date createdAt;
 
@@ -69,6 +70,14 @@ public class Portal {
 
     public void setBounds(List<PortalBound> bounds) {
         this.bounds = bounds;
+    }
+
+    public PortalDestination getDestination() {
+        return destination;
+    }
+
+    public void setDestination(PortalDestination destination) {
+        this.destination = destination;
     }
 
     public UUID getCreatedBy() {
