@@ -74,6 +74,19 @@ public class Database {
                     "location_z INTEGER NOT NULL," +
                     "FOREIGN KEY (portal_id) REFERENCES portals(id) ON DELETE CASCADE" +
                     ")");
+
+            // Portal destinations table (one-to-one relationship with portals)
+            statement.execute("CREATE TABLE IF NOT EXISTS portal_destinations (" +
+                    "id TEXT PRIMARY KEY," +
+                    "portal_id TEXT NOT NULL UNIQUE," +
+                    "x REAL NOT NULL," +
+                    "y REAL NOT NULL," +
+                    "z REAL NOT NULL," +
+                    "rotation_x REAL NOT NULL," +
+                    "rotation_y REAL NOT NULL," +
+                    "rotation_z REAL NOT NULL," +
+                    "FOREIGN KEY (portal_id) REFERENCES portals(id) ON DELETE CASCADE" +
+                    ")");
         }
     }
 }
