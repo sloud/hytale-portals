@@ -16,6 +16,7 @@ import com.hypixel.hytale.server.core.modules.entity.teleport.Teleport;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
+import dev.joeyaurel.hytale.portals.geometry.Vector;
 import dev.joeyaurel.hytale.portals.database.entities.Portal;
 import dev.joeyaurel.hytale.portals.database.entities.PortalDestination;
 import dev.joeyaurel.hytale.portals.stores.PortalStore;
@@ -79,9 +80,11 @@ public class EntryTickingSystem extends EntityTickingSystem<EntityStore> {
 
         Optional<Portal> optionalPortal = this.portalStore.findPortalAtLocation(
                 playerWorldId,
-                playerPosition.getX(),
-                playerPosition.getY(),
-                playerPosition.getZ()
+                new Vector(
+                        playerPosition.getX(),
+                        playerPosition.getY(),
+                        playerPosition.getZ()
+                )
         );
 
         if (optionalPortal.isEmpty()) {
