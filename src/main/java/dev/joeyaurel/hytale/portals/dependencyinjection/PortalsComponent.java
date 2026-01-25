@@ -10,6 +10,8 @@ import dev.joeyaurel.hytale.portals.database.repositories.NetworkRepository;
 import dev.joeyaurel.hytale.portals.database.repositories.PortalRepository;
 import dev.joeyaurel.hytale.portals.stores.NetworkStore;
 import dev.joeyaurel.hytale.portals.stores.PortalStore;
+import dev.joeyaurel.hytale.portals.systems.events.BreakBlockEventSystem;
+import dev.joeyaurel.hytale.portals.systems.events.DamageBlockEventSystem;
 import dev.joeyaurel.hytale.portals.systems.tick.EntryTickingSystem;
 import dagger.Component;
 import javax.inject.Singleton;
@@ -37,7 +39,11 @@ public interface PortalsComponent {
     PortalCreateCommand portalCreateCommand();
     PortalCancelCommand portalCancelCommand();
 
-    // Systems
+    // Systems - Events
+    BreakBlockEventSystem breakBlockEventSystem();
+    DamageBlockEventSystem damageBlockEventSystem();
+
+    // Systems - Tick
     EntryTickingSystem entryTickingSystem();
 
     @Component.Builder

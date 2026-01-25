@@ -68,7 +68,8 @@ public class PortalsPlugin extends JavaPlugin {
         this.logger.atFine().log("Registering systems...");
 
         // Events
-        //this.getEntityStoreRegistry().registerSystem(this.component.damageBlockEventSystem());
+        this.getEntityStoreRegistry().registerSystem(this.component.breakBlockEventSystem());
+        this.getEntityStoreRegistry().registerSystem(this.component.damageBlockEventSystem());
 
         // Ticks
         this.getEntityStoreRegistry().registerSystem(this.component.entryTickingSystem());
