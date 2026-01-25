@@ -8,7 +8,7 @@ import dev.joeyaurel.hytale.portals.config.PortalsConfig;
 import dev.joeyaurel.hytale.portals.dependencyinjection.DaggerPortalsComponent;
 import dev.joeyaurel.hytale.portals.dependencyinjection.PortalsComponent;
 import dev.joeyaurel.hytale.portals.dependencyinjection.PortalsModule;
-import dev.joeyaurel.hytale.portals.systems.tick.EntryTickingSystem;
+import dev.joeyaurel.hytale.portals.utils.FileUtils;
 
 import javax.annotation.Nonnull;
 
@@ -24,6 +24,8 @@ public class PortalsPlugin extends JavaPlugin {
 
     public PortalsPlugin(@Nonnull JavaPluginInit init) {
         super(init);
+
+        FileUtils.ensureMainDirectory();
 
         this.pluginName = this.getManifest().getName();
         this.pluginVersion = this.getManifest().getVersion().toString();
