@@ -76,13 +76,6 @@ public class BreakBlockEventSystem extends EntityEventSystem<EntityStore, BreakB
             return;
         }
 
-        Vector3i targetBlock = event.getTargetBlock();
-
-        UUID worldId = playerWorld.getWorldConfig().getUuid();
-        int x = targetBlock.getX();
-        int y = targetBlock.getY();
-        int z = targetBlock.getZ();
-
         PortalCreateDto portalCreateDto = this.portalCreationManager.getPortalCreateDto(playerId);
 
         if (portalCreateDto == null) {
@@ -91,6 +84,8 @@ public class BreakBlockEventSystem extends EntityEventSystem<EntityStore, BreakB
 
         // Cancel damaging the block if in portal creation mode
         event.setCancelled(true);
+
+        UUID worldId = playerWorld.getWorldConfig().getUuid();
 
         if (portalCreateDto.worldId == null) {
             portalCreateDto.worldId = worldId;
@@ -109,17 +104,23 @@ public class BreakBlockEventSystem extends EntityEventSystem<EntityStore, BreakB
             portalCreateDto.bounds = new ArrayList<>();
         }
 
-        dev.joeyaurel.hytale.portals.geometry.Vector portalBound = new Vector(x, y, z);
+        Vector3i targetBlock = event.getTargetBlock();
+
+        int x = targetBlock.getX();
+        int y = targetBlock.getY();
+        int z = targetBlock.getZ();
+
+        Vector portalBound = new Vector(x, y, z);
         portalCreateDto.bounds.add(portalBound);
 
         this.portalCreationManager.setPortalCreateDto(playerId, portalCreateDto);
 
         if (portalCreateDto.bounds.size() == 1) {
-            playerReference.sendMessage(Message.raw("Portal bound A set. Touch another block to set bound B.").color(Color.GREEN));
-            playerReference.sendMessage(Message.raw("Or cancel portal creation with `/portal cancel`.").color(Color.YELLOW));
+            playerReference.sendMessage(Message.raw("[A] Portal bound A set. (X: " + x + ", Y: " + y + ", Z: " + z + ") Touch another block to set bound B.").color(Color.GREEN));
+            playerReference.sendMessage(Message.raw("Or cancel portal creation with `/portal cancel`.").color(Color.GRAY));
         } else if (portalCreateDto.bounds.size() == 2) {
-            playerReference.sendMessage(Message.raw("Portal bound B set. Finish portal creation with `/portal done` at the destination, facing in the correct direction.").color(Color.GREEN));
-            playerReference.sendMessage(Message.raw("Or cancel portal creation with `/portal cancel`.").color(Color.YELLOW));
+            playerReference.sendMessage(Message.raw("[B] Portal bound B set. (X: " + x + ", Y: " + y + ", Z: " + z + ") Finish portal creation with `/portal done` at the destination, facing in the correct direction.").color(Color.GREEN));
+            playerReference.sendMessage(Message.raw("Or cancel portal creation with `/portal cancel`.").color(Color.GRAY));
         }
     }
 
