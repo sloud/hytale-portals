@@ -8,6 +8,7 @@ import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
 import dev.joeyaurel.hytale.portals.PortalsPlugin;
 import dev.joeyaurel.hytale.portals.commands.portal.PortalCancelCommand;
 import dev.joeyaurel.hytale.portals.commands.portal.PortalCreateCommand;
+import dev.joeyaurel.hytale.portals.commands.portal.PortalDoneCommand;
 import dev.joeyaurel.hytale.portals.commands.portal.PortalNetworkCommand;
 
 import javax.annotation.Nonnull;
@@ -20,6 +21,7 @@ public class PortalCommand extends CommandBase {
             PortalsPlugin plugin,
             PortalCreateCommand portalCreateCommand,
             PortalCancelCommand portalCancelCommand,
+            PortalDoneCommand portalDoneCommand,
             PortalNetworkCommand portalNetworkCommand
     ) {
         super("portal", "Prints basic infos for the " + plugin.getPluginName() + " plugin.");
@@ -28,6 +30,7 @@ public class PortalCommand extends CommandBase {
 
         this.addSubCommand(portalCreateCommand);
         this.addSubCommand(portalCancelCommand);
+        this.addSubCommand(portalDoneCommand);
         this.addSubCommand(portalNetworkCommand);
     }
 
