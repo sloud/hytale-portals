@@ -171,18 +171,18 @@ public class EntryTickingSystem extends EntityTickingSystem<EntityStore> {
                             Message.raw("Destination world not found for portal " + otherPortal.getName()).color(Color.RED)
                     );
 
-                    this.logger.atFine().log("Removing player " + playerId + " from in-portal list.");
+                    this.logger.atFine().log("Removing player " + id + " from in-portal list.");
 
-                    this.playersInPortal.remove(playerId);
+                    this.playersInPortal.remove(id);
                 },
                 id -> {
-                    this.logger.atFine().log("Removing player " + playerId + " from in-portal list.");
+                    this.logger.atFine().log("Removing player " + id + " from in-portal list.");
 
-                    this.playersInPortal.remove(playerId);
+                    this.playersInPortal.remove(id);
 
                     // Re-trigger immediately if they are still in a portal? No, let the cooldown handle it.
                     // We put it back with the current time to ensure cooldown applies from dismissal time.
-                    this.playersInPortal.put(playerId, System.currentTimeMillis());
+                    this.playersInPortal.put(id, System.currentTimeMillis());
                 }
         );
     }
