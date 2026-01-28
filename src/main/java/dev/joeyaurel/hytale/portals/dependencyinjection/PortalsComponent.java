@@ -1,15 +1,7 @@
 package dev.joeyaurel.hytale.portals.dependencyinjection;
 
-import com.hypixel.hytale.logger.HytaleLogger;
-import dev.joeyaurel.hytale.portals.PortalsPlugin;
 import dev.joeyaurel.hytale.portals.commands.PortalCommand;
-import dev.joeyaurel.hytale.portals.commands.portal.PortalCancelCommand;
-import dev.joeyaurel.hytale.portals.commands.portal.PortalCreateCommand;
 import dev.joeyaurel.hytale.portals.database.Database;
-import dev.joeyaurel.hytale.portals.database.repositories.NetworkRepository;
-import dev.joeyaurel.hytale.portals.database.repositories.PortalRepository;
-import dev.joeyaurel.hytale.portals.stores.NetworkStore;
-import dev.joeyaurel.hytale.portals.stores.PortalStore;
 import dev.joeyaurel.hytale.portals.systems.events.BreakBlockEventSystem;
 import dev.joeyaurel.hytale.portals.systems.events.DamageBlockEventSystem;
 import dev.joeyaurel.hytale.portals.systems.tick.EntryTickingSystem;
@@ -19,25 +11,11 @@ import javax.inject.Singleton;
 @Singleton
 @Component(modules = {PortalsModule.class})
 public interface PortalsComponent {
-    // Basics
-    HytaleLogger logger();
-    PortalsPlugin plugin();
-
     // Database
     Database database();
 
-    // Repositories
-    NetworkRepository networkRepository();
-    PortalRepository portalRepository();
-
-    // Stores
-    NetworkStore networkStore();
-    PortalStore portalStore();
-
     // Commands
     PortalCommand portalCommand();
-    PortalCreateCommand portalCreateCommand();
-    PortalCancelCommand portalCancelCommand();
 
     // Systems - Events
     BreakBlockEventSystem breakBlockEventSystem();
