@@ -4,10 +4,10 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import com.hypixel.hytale.logger.HytaleLogger;
 import dev.joeyaurel.hytale.portals.utils.FileUtils;
+import org.jspecify.annotations.Nullable;
 
 import java.sql.*;
 import java.util.*;
-import java.util.logging.Level;
 
 @Singleton
 public class Database {
@@ -22,6 +22,7 @@ public class Database {
         this.initDatabase();
     }
 
+    @Nullable
     public Connection getConnection() {
         return connection;
     }
@@ -38,8 +39,7 @@ public class Database {
                 this.createTables();
             }
         } catch (Exception e) {
-            this.logger.at(Level.SEVERE).log("Error initializing database: " + e.getMessage());
-            e.printStackTrace();
+            this.logger.atSevere().withCause(e).log("Error initializing database: " + e.getMessage());
         }
     }
 

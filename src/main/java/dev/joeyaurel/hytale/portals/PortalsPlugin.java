@@ -11,6 +11,8 @@ import dev.joeyaurel.hytale.portals.dependencyinjection.PortalsModule;
 import dev.joeyaurel.hytale.portals.utils.FileUtils;
 
 import javax.annotation.Nonnull;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class PortalsPlugin extends JavaPlugin {
 
@@ -68,6 +70,22 @@ public class PortalsPlugin extends JavaPlugin {
         this.registerCommands();
 
         this.logger.atInfo().log("Plugin " + this.pluginName + " setup successfully!");
+    }
+
+    @Override
+    protected void shutdown() {
+        this.logger.atInfo().log("Shutting down plugin " + this.pluginName + "...");
+
+        Connection databaseConnection = this.component.database().getConnection();
+
+        if (databaseConnection != null) {
+            try {
+                databaseConnection.close();
+                this.logger.atInfo().log("Database connection closed successfully.");
+            } catch (SQLException e) {
+                this.logger.atWarning().withCause(e).log("Failed to close database connection");
+            }
+        }
     }
 
     private void registerSystems() {
