@@ -43,6 +43,9 @@ public class PortalsPlugin extends JavaPlugin {
             this.logger.atSevere().withCause(e).log("Failed to ensure directory exists: " + pluginConfigPath);
         }
 
+        // Initialize configuration
+        this.component.config().initialize(pluginConfigPath);
+
         // Initialize database
         this.component.database().initialize(pluginConfigPath);
 
