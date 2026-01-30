@@ -6,8 +6,9 @@ import com.hypixel.hytale.logger.HytaleLogger;
 import dev.joeyaurel.hytale.portals.utils.FileUtils;
 import org.jspecify.annotations.Nullable;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.sql.*;
-import java.util.*;
 
 @Singleton
 public class Database {
@@ -15,11 +16,11 @@ public class Database {
     private final HytaleLogger logger;
     private Connection connection;
 
+    private boolean initialized = false;
+
     @Inject
     public Database(HytaleLogger logger) {
         this.logger = logger;
-
-        this.initDatabase();
     }
 
     @Nullable
@@ -27,19 +28,36 @@ public class Database {
         return connection;
     }
 
-    private void initDatabase() {
+    public void initialize(Path databasePath) {
+        if (this.initialized) {
+            return;
+        }
+
+        Path databaseFilePath = databasePath.resolve(FileUtils.PLUGIN_DATABASE_FILE_NAME);
+
+        try {
+            FileUtils.ensureDirectory(databasePath);
+        } catch (IOException e) {
+            this.logger.atSevere().withCause(e).log("Failed to initialize database directory");
+            return;
+        }
+
         try {
             Class.forName("org.sqlite.JDBC");
 
-            this.connection = DriverManager.getConnection("jdbc:sqlite:" + FileUtils.DATABASE_PATH);
+            this.connection = DriverManager.getConnection(
+                    "jdbc:sqlite:" + databaseFilePath.toAbsolutePath()
+            );
 
             try (Statement statement = this.connection.createStatement()) {
                 statement.execute("PRAGMA foreign_keys = ON;");
             } finally {
                 this.createTables();
             }
+
+            this.initialized = true;
         } catch (Exception e) {
-            this.logger.atSevere().withCause(e).log("Error initializing database: " + e.getMessage());
+            this.logger.atSevere().withCause(e).log("Error initializing database");
         }
     }
 

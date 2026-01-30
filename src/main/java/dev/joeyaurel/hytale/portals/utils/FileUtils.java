@@ -1,23 +1,19 @@
 package dev.joeyaurel.hytale.portals.utils;
 
-import com.hypixel.hytale.server.core.Constants;
-
-import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class FileUtils {
 
-    public static String MAIN_PATH = Constants.UNIVERSE_PATH.resolve("Portals").toAbsolutePath().toString();
-    public static String DATABASE_PATH = MAIN_PATH + File.separator + "database.db";
+    public static final String PLUGIN_DIRECTORY_NAME = "Portals";
 
-    public static void ensureDirectory(String path){
-        var file = new File(path);
+    public static final String PLUGIN_CONFIG_FILE_NAME = "config.json";
+    public static final String PLUGIN_DATABASE_FILE_NAME = "database.db";
 
-        if (!file.exists()) {
-            file.mkdirs();
+    public static void ensureDirectory(Path path) throws IOException {
+        if (!Files.exists(path)) {
+            Files.createDirectories(path);
         }
-    }
-
-    public static void ensureMainDirectory(){
-        ensureDirectory(MAIN_PATH);
     }
 }
