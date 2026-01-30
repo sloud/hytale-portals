@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/joeyaurel/hytale-portals/compare/v0.1.0...v0.2.0) (2026-01-30)
+
+
+### Features
+
+* **server:** update server version to 2026.01.28-87d03be09 ([8347a06](https://github.com/joeyaurel/hytale-portals/commit/8347a06004df9e75ce8431787f6b937115796790))
+
+
+### Bug Fixes
+
+* **build:** package runtime dependencies in fat JAR ([31ff53e](https://github.com/joeyaurel/hytale-portals/commit/31ff53e9d3732ccdc9a9b3b5fb80d5bb50dfbaca))
+
 ## [0.1.0](https://github.com/joeyaurel/hytale-portals/compare/v0.0.1...v0.1.0) (2026-01-30)
 
 
