@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/joeyaurel/hytale-portals/compare/v0.1.0...v0.1.1) (2026-01-30)
+
+
+### Bug Fixes
+
+* **build:** package runtime dependencies in fat JAR ([ab58758](https://github.com/joeyaurel/hytale-portals/commit/ab5875871e378c506f2bc543ba6f5b57a70cb7a8))
+
 ## [0.1.0](https://github.com/joeyaurel/hytale-portals/compare/v0.0.1...v0.1.0) (2026-01-30)
 
 
