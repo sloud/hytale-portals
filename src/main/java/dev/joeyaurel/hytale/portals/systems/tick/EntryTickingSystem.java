@@ -12,9 +12,12 @@ import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.math.vector.Transform;
 import com.hypixel.hytale.math.vector.Vector3d;
+import com.hypixel.hytale.protocol.SoundCategory;
 import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.asset.type.soundevent.config.SoundEvent;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.universe.world.SoundUtil;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import dev.joeyaurel.hytale.portals.geometry.Vector;
@@ -76,7 +79,26 @@ public class EntryTickingSystem extends EntityTickingSystem<EntityStore> {
             return;
         }
 
+        World playerWorld = player.getWorld();
+
+        if (playerWorld == null) {
+            return;
+        }
+
         UUID playerId = playerReference.getUuid();
+
+        // Check for pending teleport sounds
+        Vector3d pendingSoundPosition = this.portalTeleportationManager.getPendingTeleportSoundPosition(playerId);
+
+        if (pendingSoundPosition != null) {
+            // Play the sound now that the player is in the destination world and it has likely loaded
+            playerWorld.execute(() -> {
+                int soundIndex = SoundEvent.getAssetMap().getIndex(PortalTeleportationManager.SOUND_TELEPORT);
+                SoundUtil.playSoundEvent3dToPlayer(reference, soundIndex, SoundCategory.UI, pendingSoundPosition, entityStore);
+
+                this.portalTeleportationManager.removePendingTeleportSoundPosition(playerId);
+            });
+        }
 
         if (this.playersWithGuiOpen.contains(playerId)) {
             // Do not trigger if GUI is already open
@@ -90,12 +112,6 @@ public class EntryTickingSystem extends EntityTickingSystem<EntityStore> {
                 // Do not trigger multiple times while in a portal or shortly after
                 return;
             }
-        }
-
-        World playerWorld = player.getWorld();
-
-        if (playerWorld == null) {
-            return;
         }
 
         UUID playerWorldId = playerWorld.getWorldConfig().getUuid();

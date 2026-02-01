@@ -5,10 +5,13 @@ import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.math.vector.Vector3d;
 import com.hypixel.hytale.math.vector.Vector3f;
+import com.hypixel.hytale.protocol.SoundCategory;
 import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.asset.type.soundevent.config.SoundEvent;
 import com.hypixel.hytale.server.core.modules.entity.teleport.Teleport;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.Universe;
+import com.hypixel.hytale.server.core.universe.world.SoundUtil;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import dev.joeyaurel.hytale.portals.domain.entities.Portal;
@@ -20,15 +23,22 @@ import org.jspecify.annotations.Nullable;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.awt.*;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
 @Singleton
 public class PortalTeleportationManager {
 
+    public static final String SOUND_TELEPORT = "SFX_Portal_Neutral_Teleport_Local";
+
     private final HytaleLogger logger;
     private final PortalStore portalStore;
+
+    // Contains pending teleportation sound positions for players
+    private final Map<UUID, Vector3d> pendingTeleportSoundPositions = new ConcurrentHashMap<>();
 
     @Inject
     public PortalTeleportationManager(
@@ -37,6 +47,15 @@ public class PortalTeleportationManager {
     ) {
         this.logger = logger;
         this.portalStore = portalStore;
+    }
+
+    @Nullable
+    public Vector3d getPendingTeleportSoundPosition(@NonNull UUID playerId) {
+        return pendingTeleportSoundPositions.get(playerId);
+    }
+
+    public void removePendingTeleportSoundPosition(@NonNull UUID playerId) {
+        this.pendingTeleportSoundPositions.remove(playerId);
     }
 
     public void teleportPlayerToPortal(
@@ -133,6 +152,17 @@ public class PortalTeleportationManager {
                             newHeadRotation
                     )
             );
+
+            if (playerWorldId.equals(targetPortal.getWorldId())) {
+                // Play teleportation sound immediately if in the same world
+                destinationWorld.execute(() -> {
+                    int soundIndex = SoundEvent.getAssetMap().getIndex(SOUND_TELEPORT);
+                    SoundUtil.playSoundEvent3dToPlayer(playerEntityRef, soundIndex, SoundCategory.UI, newPosition, entityStore);
+                });
+            } else {
+                // Delay sound until the player has loaded the destination world
+                this.pendingTeleportSoundPositions.put(playerId, newPosition);
+            }
 
             playerReference.sendMessage(
                     Message.raw("Teleported to " + targetPortal.getName() + "!").color(Color.GREEN)
