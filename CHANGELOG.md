@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.4.1](https://github.com/joeyaurel/hytale-portals/compare/v0.4.0...v0.4.1) (2026-02-01)
+
+
+### Code Refactoring
+
+* rename package structure to `network.sloud` ([e7f8d08](https://github.com/joeyaurel/hytale-portals/commit/e7f8d08ab21e42e7144551445af88687d4c46e3c))
+* rename plugin and update references ([e220d33](https://github.com/joeyaurel/hytale-portals/commit/e220d336d9c2d8a92ccffbd91793740326a37339))
+
+
+### Continuous Integration
+
+* **release:** add custom changelog sections to release config ([6e4df08](https://github.com/joeyaurel/hytale-portals/commit/6e4df088c7194b54f5f474bb3e2b703f4b39fa62))
+
 ## [0.4.0](https://github.com/joeyaurel/hytale-portals/compare/v0.3.0...v0.4.0) (2026-02-01)
 
 
