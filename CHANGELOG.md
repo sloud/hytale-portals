@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0](https://github.com/joeyaurel/hytale-portals/compare/v0.2.0...v0.3.0) (2026-02-01)
+
+
+### Features
+
+* **commands:** add portal configuration management ([6ebf8a0](https://github.com/joeyaurel/hytale-portals/commit/6ebf8a04f9157fe935952e171ff700330e227eee))
+* **portals:** add delayed teleport sound playback ([b921237](https://github.com/joeyaurel/hytale-portals/commit/b921237c13f392e22204ca505ead380d18a55c83))
+
 ## [0.2.0](https://github.com/joeyaurel/hytale-portals/compare/v0.1.0...v0.2.0) (2026-01-30)
 
 
