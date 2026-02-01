@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.3'
+    id 'maven-publish'
 }
 
 import org.gradle.internal.os.OperatingSystem
@@ -112,6 +113,19 @@ jar {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/${System.getenv("GITHUB_REPOSITORY")}"
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }
 
 // Create the working directory to run the server if it does not already exist.
