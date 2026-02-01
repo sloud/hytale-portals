@@ -80,7 +80,10 @@ dependencies {
     // Adds the Hytale server as a build dependency, allowing you to reference and
     // compile against their code. This requires you to have Hytale installed using
     // the official launcher for now or using the script from `CONTRIBUTING.md`.
-    compileOnly files("$hytaleHome/HytaleServer.jar")
+    // `implementation` allows the HytaleServer.jar to be executed by IDEA run configuration
+    // and VSCode launch configuration. The `jar {}` section below excludes it from being bundled
+    // into the plugin jar.
+    implementation files("$hytaleHome/HytaleServer.jar")
     implementation 'com.google.code.gson:gson:2.13.2'
     implementation 'com.google.dagger:dagger:2.59'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.59'
@@ -100,7 +103,10 @@ dependencies {
 jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+        configurations.runtimeClasspath.collect {
+            // Exclude the HytaleServer.jar from being included in the plugin jar.
+            (it.isDirectory() || it.name != "HytaleServer.jar") ? (it.isDirectory() ? it : zipTree(it)) : []
+        }
     }
 }
 
