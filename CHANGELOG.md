@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/joeyaurel/hytale-portals/compare/v0.3.0...v0.4.0) (2026-02-01)
+
+
+### Features
+
+* **build:** add GitHub Packages support for Maven publishing ([be823bf](https://github.com/joeyaurel/hytale-portals/commit/be823bf4fe7f13fda44a548afd784b6b330b5b66))
+
 ## [0.3.0](https://github.com/joeyaurel/hytale-portals/compare/v0.2.0...v0.3.0) (2026-02-01)
 
 
