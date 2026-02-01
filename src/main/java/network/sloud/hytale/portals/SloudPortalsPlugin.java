@@ -3,9 +3,9 @@ package network.sloud.hytale.portals;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
-import network.sloud.hytale.portals.dependencyinjection.DaggerPortalsComponent;
-import network.sloud.hytale.portals.dependencyinjection.PortalsComponent;
-import network.sloud.hytale.portals.dependencyinjection.PortalsModule;
+import network.sloud.hytale.portals.dependencyinjection.DaggerSloudPortalsComponent;
+import network.sloud.hytale.portals.dependencyinjection.SloudPortalsComponent;
+import network.sloud.hytale.portals.dependencyinjection.SloudPortalsModule;
 import network.sloud.hytale.portals.utils.FileUtils;
 
 import javax.annotation.Nonnull;
@@ -15,27 +15,34 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class PortalsPlugin extends JavaPlugin {
+public class SloudPortalsPlugin extends JavaPlugin {
 
     private final HytaleLogger logger = HytaleLogger.forEnclosingClass();
 
     private final String pluginName;
     private final String pluginVersion;
 
-    private final PortalsComponent component;
+    private final SloudPortalsComponent component;
 
-    public PortalsPlugin(@Nonnull JavaPluginInit init) {
+    public SloudPortalsPlugin(@Nonnull JavaPluginInit init) {
         super(init);
 
         this.pluginName = this.getManifest().getName();
         this.pluginVersion = this.getManifest().getVersion().toString();
 
-        this.component = DaggerPortalsComponent.builder()
-                .portalsModule(new PortalsModule(this.logger, this))
+        this.component = DaggerSloudPortalsComponent.builder()
+                .portalsModule(new SloudPortalsModule(this.logger, this))
                 .build();
 
         Path serverRootPath = Paths.get(".").toAbsolutePath().normalize();
         Path pluginConfigPath = serverRootPath.resolve("mods").resolve(FileUtils.PLUGIN_DIRECTORY_NAME);
+        Path oldPluginConfigPath = serverRootPath.resolve("mods").resolve(FileUtils.PLUGIN_DIRECTORY_NAME_OLD);
+
+        try {
+            FileUtils.migrateOldDirectory(oldPluginConfigPath, pluginConfigPath);
+        } catch (IOException e) {
+            this.logger.atWarning().withCause(e).log("Failed to migrate old directory: " + oldPluginConfigPath);
+        }
 
         try {
             FileUtils.ensureDirectory(pluginConfigPath);
@@ -60,7 +67,7 @@ public class PortalsPlugin extends JavaPlugin {
         return pluginVersion;
     }
 
-    public PortalsComponent getComponent() {
+    public SloudPortalsComponent getComponent() {
         return component;
     }
 

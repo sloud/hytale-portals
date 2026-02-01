@@ -10,8 +10,8 @@ import dagger.Component;
 import javax.inject.Singleton;
 
 @Singleton
-@Component(modules = {PortalsModule.class})
-public interface PortalsComponent {
+@Component(modules = {SloudPortalsModule.class})
+public interface SloudPortalsComponent {
     // Configuration
     PortalsConfig config();
 
@@ -30,7 +30,7 @@ public interface PortalsComponent {
 
     @Component.Builder
     interface Builder {
-        PortalsComponent build();
-        Builder portalsModule(PortalsModule portalsModule);
+        SloudPortalsComponent build();
+        Builder portalsModule(SloudPortalsModule sloudPortalsModule);
     }
 }

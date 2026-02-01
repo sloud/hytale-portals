@@ -5,7 +5,7 @@ import javax.inject.Singleton;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
-import network.sloud.hytale.portals.PortalsPlugin;
+import network.sloud.hytale.portals.SloudPortalsPlugin;
 import network.sloud.hytale.portals.commands.portal.*;
 
 import javax.annotation.Nonnull;
@@ -15,7 +15,7 @@ public class PortalCommand extends CommandBase {
 
     @Inject
     public PortalCommand(
-            PortalsPlugin plugin,
+            SloudPortalsPlugin plugin,
             PortalCreateCommand portalCreateCommand,
             PortalConfigCommand portalConfigCommand,
             PortalCancelCommand portalCancelCommand,

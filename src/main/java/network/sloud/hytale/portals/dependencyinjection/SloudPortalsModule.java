@@ -1,19 +1,19 @@
 package network.sloud.hytale.portals.dependencyinjection;
 
 import com.hypixel.hytale.logger.HytaleLogger;
-import network.sloud.hytale.portals.PortalsPlugin;
+import network.sloud.hytale.portals.SloudPortalsPlugin;
 import dagger.Module;
 import dagger.Provides;
 
 import javax.inject.Singleton;
 
 @Module
-public class PortalsModule {
+public class SloudPortalsModule {
 
     private final HytaleLogger logger;
-    private final PortalsPlugin plugin;
+    private final SloudPortalsPlugin plugin;
 
-    public PortalsModule(HytaleLogger logger, PortalsPlugin plugin) {
+    public SloudPortalsModule(HytaleLogger logger, SloudPortalsPlugin plugin) {
         this.logger = logger;
         this.plugin = plugin;
     }
@@ -26,7 +26,7 @@ public class PortalsModule {
 
     @Provides
     @Singleton
-    public PortalsPlugin providePlugin() {
+    public SloudPortalsPlugin providePlugin() {
         return this.plugin;
     }
 }

@@ -1,4 +1,4 @@
-# Hytale Portals
+# Sloud Portals
 
 A comprehensive portal system for Hytale, allowing players to teleport between worlds or specific points of interest.
 
