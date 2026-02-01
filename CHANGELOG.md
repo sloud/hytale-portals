@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/joeyaurel/hytale-portals/compare/v0.4.1...v0.4.2) (2026-02-01)
+
+
+### Code Refactoring
+
+* **settings:** rename project to `SloudPortals` ([7570f73](https://github.com/joeyaurel/hytale-portals/commit/7570f73fd38903b72cf193f456a264049a22c395))
+
 ## [0.4.1](https://github.com/joeyaurel/hytale-portals/compare/v0.4.0...v0.4.1) (2026-02-01)
 
 
