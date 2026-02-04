@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.4](https://github.com/sloud/hytale-portals/compare/v0.4.3...v0.4.4) (2026-02-04)
+
+
+### Continuous Integration
+
+* **build:** enhance Maven publishing setup and workflow ([3ed48c7](https://github.com/sloud/hytale-portals/commit/3ed48c7aeef22388c7d04b810d0541a849ce16eb))
+
 ## [0.4.3](https://github.com/sloud/hytale-portals/compare/v0.4.2...v0.4.3) (2026-02-04)
 
 
