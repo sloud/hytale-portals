@@ -20,7 +20,7 @@ jobs:
       - uses: googleapis/release-please-action@v4.4.0
         id: release
         with:
-          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          token: ${{ secrets.RELEASER_PAT }}
 
   release-assets:
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
 
       - name: Upload Release Artifact
         env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASER_PAT }}
         run: gh release upload ${{ needs.release-please.outputs.tag_name }} build/libs/*.jar
 
   publish-to-github-packages:
@@ -65,4 +65,4 @@ jobs:
       - name: Publish to GitHub Packages
         run: ./gradlew publishMavenJavaPublicationToGitHubPackagesRepository
         env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASER_PAT }}
