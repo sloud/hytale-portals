@@ -11,6 +11,38 @@ A comprehensive portal system for Hytale, allowing players to teleport between w
 - **Seamless Teleportation:** Stepping through a portal teleports you to another portal within the same network.
 - **Destination Selection:** If a network contains more than two portals, players can choose their specific destination via an interactive menu.
 
+## Installation
+
+- Download the latest `.jar` file from the [releases page](https://github.com/sloud/hytale-portals/releases).
+  - The `.jar` files are listed in the "Assets" section of each release.
+- Put the `.jar` file in your Hytale `mods` folder.
+
+## Maven/Gradle
+
+Under https://github.com/sloud/hytale-portals/packages/ you can find packages for Maven and Gradle.
+
+To add it to your Maven project, include the following dependency in your `pom.xml`:
+
+<!-- x-release-please-start-version -->
+
+```xml
+<dependency>
+  <groupId>network.sloud.hytale</groupId>
+  <artifactId>portals</artifactId>
+  <version>0.4.7</version>
+</dependency>
+```
+
+To add it to your Gradle project, include the following dependency in your `build.gradle`:
+
+```groovy
+dependencies {
+    implementation 'network.sloud.hytale:portals:0.4.7'
+}
+```
+
+<!-- x-release-please-end -->
+
 ## Getting Started
 
 ### Creating a Network

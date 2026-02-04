@@ -2,6 +2,7 @@
   "release-type": "simple",
   "extra-files": [
     "gradle.properties",
+    "README.md",
     {
       "type": "json",
       "path": "src/main/resources/manifest.json",
