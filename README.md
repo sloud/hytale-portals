@@ -24,6 +24,11 @@ A comprehensive portal system for Hytale, allowing players to teleport between w
 
 Under https://github.com/sloud/hytale-portals/packages/ you can find packages for Maven and Gradle.
 
+> [!IMPORTANT]  
+> Packages are stored on GitHub Packages. In order to use them, you should read the following:
+> - [Working with the Apache Maven registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry)
+> - [Working with the Gradle registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry)
+
 To add it to your Maven project, include the following dependency in your `pom.xml`:
 
 <!-- x-release-please-start-version -->
