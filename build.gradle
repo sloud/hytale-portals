@@ -51,6 +51,8 @@ if (project.hasProperty('hytale_home')) {
     println "Example: gradle build -Phytale_home=\"/path/to/Hytale/install/<patchline>/package/game/latest/Server\""
 }
 
+group = maven_group
+
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(java_version)
     withSourcesJar()
