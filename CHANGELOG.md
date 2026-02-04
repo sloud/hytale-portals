@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.3](https://github.com/sloud/hytale-portals/compare/v0.4.2...v0.4.3) (2026-02-04)
+
+
+### Continuous Integration
+
+* **release:** update Gradle task for GitHub Packages publishing ([e9336d4](https://github.com/sloud/hytale-portals/commit/e9336d4ec0757e652a784d06e8b14cbeef34fde7))
+* **release:** update token references in workflow ([3aa53c2](https://github.com/sloud/hytale-portals/commit/3aa53c2f4c2a0c9c373150d0d2fc47dbc3d6a273))
+
 ## [0.4.2](https://github.com/joeyaurel/hytale-portals/compare/v0.4.1...v0.4.2) (2026-02-01)
 
 
