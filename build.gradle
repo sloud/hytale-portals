@@ -123,8 +123,8 @@ publishing {
             from components.java
 
             pom {
-                name = 'Hytale Portals'
-                description = 'A Hytale plugin for creating and managing portals.'
+                name = 'SloudPortals'
+                description = 'Portal system for Hytale. Teleport to other worlds or points of interest.'
                 url = 'https://github.com/sloud/hytale-portals'
                 licenses {
                     license {
@@ -136,6 +136,10 @@ publishing {
                     developer {
                         id = 'sloud'
                         name = 'Sloud Network'
+                    }
+                    developer {
+                        id = 'joeyaurel'
+                        name = 'Joey Aurel'
                     }
                 }
                 scm {
