@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.7](https://github.com/sloud/hytale-portals/compare/v0.4.6...v0.4.7) (2026-02-04)
+
+
+### Code Refactoring
+
+* **settings:** rename project to `portals` ([f76be07](https://github.com/sloud/hytale-portals/commit/f76be07ad86d42117f11f5526b8b262a9bb96edc))
+
 ## [0.4.6](https://github.com/sloud/hytale-portals/compare/v0.4.5...v0.4.6) (2026-02-04)
 
 
