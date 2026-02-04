@@ -13,9 +13,12 @@ A comprehensive portal system for Hytale, allowing players to teleport between w
 
 ## Installation
 
-- Download the latest `.jar` file from the [releases page](https://github.com/sloud/hytale-portals/releases).
-  - The `.jar` files are listed in the "Assets" section of each release.
+<!-- x-release-please-start-version -->
+
+- Download the latest `.jar` file from the [here](https://github.com/sloud/hytale-portals/releases/download/v0.4.7/portals-0.4.7.jar).
 - Put the `.jar` file in your Hytale `mods` folder.
+
+<!-- x-release-please-end -->
 
 ## Maven/Gradle
 
