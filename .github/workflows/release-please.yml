@@ -65,4 +65,6 @@ jobs:
       - name: Publish to GitHub Packages
         run: ./gradlew publishMavenJavaPublicationToGitHubPackagesRepository
         env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.RELEASER_PAT }}

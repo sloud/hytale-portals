@@ -116,6 +116,36 @@ test {
 }
 
 publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            pom {
+                name = 'Hytale Portals'
+                description = 'A Hytale plugin for creating and managing portals.'
+                url = 'https://github.com/sloud/hytale-portals'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'sloud'
+                        name = 'Sloud Network'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/sloud/hytale-portals.git'
+                    developerConnection = 'scm:git:ssh://github.com/sloud/hytale-portals.git'
+                    url = 'https://github.com/sloud/hytale-portals'
+                }
+            }
+
+            artifact jar
+        }
+    }
     repositories {
         maven {
             name = "GitHubPackages"
