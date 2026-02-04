@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.6](https://github.com/sloud/hytale-portals/compare/v0.4.5...v0.4.6) (2026-02-04)
+
+
+### Continuous Integration
+
+* **build:** add workflow for testing Maven local publishing ([b418ff3](https://github.com/sloud/hytale-portals/commit/b418ff3f3ec0c3a501dd7aecc5c582a3fa3ed4a6))
+* **build:** remove redundant artifact declaration ([a85e22d](https://github.com/sloud/hytale-portals/commit/a85e22d1f38679af9b8ab6dafab8524af4347597))
+* **build:** update POM metadata for publishing ([d7b695e](https://github.com/sloud/hytale-portals/commit/d7b695e7c15faf301faa543cc707ef26db52ff3e))
+
 ## [0.4.5](https://github.com/sloud/hytale-portals/compare/v0.4.4...v0.4.5) (2026-02-04)
 
 
