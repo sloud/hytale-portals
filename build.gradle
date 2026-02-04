@@ -144,8 +144,6 @@ publishing {
                     url = 'https://github.com/sloud/hytale-portals'
                 }
             }
-
-            artifact jar
         }
     }
     repositories {
