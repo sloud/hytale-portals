@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.5](https://github.com/sloud/hytale-portals/compare/v0.4.4...v0.4.5) (2026-02-04)
+
+
+### Continuous Integration
+
+* **build:** set Maven group in Gradle configuration ([05c19ec](https://github.com/sloud/hytale-portals/commit/05c19ec0fcd0d3faf2b443609f24250c7e508fed))
+
 ## [0.4.4](https://github.com/sloud/hytale-portals/compare/v0.4.3...v0.4.4) (2026-02-04)
 
 
