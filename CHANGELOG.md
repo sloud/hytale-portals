@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.8](https://github.com/sloud/hytale-portals/compare/v0.4.7...v0.4.8) (2026-02-04)
+
+
+### Documentation
+
+* **readme:** add installation and dependency instructions ([a885299](https://github.com/sloud/hytale-portals/commit/a885299e90941921e81a5c9f5832f6214722f0ee))
+* **readme:** add notes on using GitHub Packages registries ([94fb29f](https://github.com/sloud/hytale-portals/commit/94fb29f3700b3c8f549deab09a1ee14d862b5a56))
+* **readme:** clarify download link and file naming ([5c586a2](https://github.com/sloud/hytale-portals/commit/5c586a20da5a508ce8f800068aa5cb3014f7be35))
+* **readme:** update installation link for latest release ([b8ddcc5](https://github.com/sloud/hytale-portals/commit/b8ddcc55c821b964681a2873714d45007492056e))
+
 ## [0.4.7](https://github.com/sloud/hytale-portals/compare/v0.4.6...v0.4.7) (2026-02-04)
 
 
