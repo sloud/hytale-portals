@@ -62,7 +62,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v5.0.0
 
-      - name: Build with Gradle
-        run: ./gradlew publish
+      - name: Publish to GitHub Packages
+        run: ./gradlew publishMavenJavaPublicationToGitHubPackagesRepository
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
