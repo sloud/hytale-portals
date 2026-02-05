@@ -2,6 +2,8 @@ plugins {
     id 'java'
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.3'
     id 'maven-publish'
+    id 'org.jreleaser' version '1.22.0'
+    id 'signing'
 }
 
 import org.gradle.internal.os.OperatingSystem
@@ -104,6 +106,8 @@ dependencies {
 }
 
 jar {
+    enabled = true
+    archiveClassifier = ""
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from {
         configurations.runtimeClasspath.collect {
@@ -123,7 +127,8 @@ publishing {
             from components.java
 
             pom {
-                name = 'SloudPortals'
+                packaging = "jar"
+                name = artifact_id
                 description = 'Portal system for Hytale. Teleport to other worlds or points of interest.'
                 url = 'https://github.com/sloud/hytale-portals'
                 licenses {
@@ -157,6 +162,29 @@ publishing {
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
+
+jreleaser {
+    project {
+        copyright = "Joey Aurel"
+    }
+    gitRootSearch = true
+    signing {
+        active = "ALWAYS"
+    }
+    deploy {
+        maven {
+            nexus2 {
+                create("maven-central") {
+                    active = "ALWAYS"
+                    url = "https://s01.oss.sonatype.org/service/local"
+                    closeRepository = true
+                    releaseRepository = true
+                    //stagingRepositories = "build/staging-deploy"
+                }
             }
         }
     }
