@@ -1,7 +1,7 @@
 {
     "Group": "network.sloud.hytale.portals",
     "Name": "SloudPortalsPlugin",
-    "Version": "0.4.9",
+    "Version": "0.4.10",
     "Description": "Portal system for Hytale. Teleport to other worlds or points of interest.",
     "Authors": [
         {

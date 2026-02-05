@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.10](https://github.com/sloud/hytale-portals/compare/v0.4.9...v0.4.10) (2026-02-05)
+
+
+### Continuous Integration
+
+* **workflow:** remove local staging publish step ([510b4a7](https://github.com/sloud/hytale-portals/commit/510b4a755b77718e7cfb334956faf2cbe5bb0edc))
+
 ## [0.4.9](https://github.com/sloud/hytale-portals/compare/v0.4.8...v0.4.9) (2026-02-05)
 
 
