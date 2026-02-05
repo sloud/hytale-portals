@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.9](https://github.com/sloud/hytale-portals/compare/v0.4.8...v0.4.9) (2026-02-05)
+
+
+### Continuous Integration
+
+* **build:** add Maven Central publishing with JReleaser ([02d2a6f](https://github.com/sloud/hytale-portals/commit/02d2a6fa19be601450b4ffc33220463831d7aefe))
+
 ## [0.4.8](https://github.com/sloud/hytale-portals/compare/v0.4.7...v0.4.8) (2026-02-04)
 
 
