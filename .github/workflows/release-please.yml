@@ -63,7 +63,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v5.0.0
 
       - name: Publish to GitHub Packages
-        run: ./gradlew publishMavenJavaPublicationToGitHubPackagesRepository
+        run: ./gradlew publishMavenPublicationToGitHubPackagesRepository
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_ACTOR: ${{ github.actor }}
