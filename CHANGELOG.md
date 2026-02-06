@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.11](https://github.com/sloud/hytale-portals/compare/v0.4.10...v0.4.11) (2026-02-06)
+
+
+### Continuous Integration
+
+* **build:** add GitHub release skip configuration ([0affd6d](https://github.com/sloud/hytale-portals/commit/0affd6dd510f0ae4dbb28508efdf51b0a3f5610b))
+* **build:** refine Maven publishing and JReleaser config ([b23a8c2](https://github.com/sloud/hytale-portals/commit/b23a8c2f1fd4c31320b6a21a4cf71cd3e8bbfe9e))
+
 ## [0.4.10](https://github.com/sloud/hytale-portals/compare/v0.4.9...v0.4.10) (2026-02-05)
 
 
