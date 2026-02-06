@@ -15,7 +15,7 @@ A comprehensive portal system for Hytale, allowing players to teleport between w
 
 <!-- x-release-please-start-version -->
 
-- Download the latest JAR file from the [here](https://github.com/sloud/hytale-portals/releases/latest). (The current version is: **v0.4.10**)
+- Download the latest JAR file from the [here](https://github.com/sloud/hytale-portals/releases/latest). (The current version is: **v0.4.11**)
 - Put the JAR file in your Hytale `mods` folder.
 
 <!-- x-release-please-end -->
@@ -37,7 +37,7 @@ To add it to your Maven project, include the following dependency in your `pom.x
 <dependency>
   <groupId>network.sloud.hytale</groupId>
   <artifactId>portals</artifactId>
-  <version>0.4.10</version>
+  <version>0.4.11</version>
 </dependency>
 ```
 
@@ -45,7 +45,7 @@ To add it to your Gradle project, include the following dependency in your `buil
 
 ```groovy
 dependencies {
-    implementation 'network.sloud.hytale:portals:0.4.10'
+    implementation 'network.sloud.hytale:portals:0.4.11'
 }
 ```
 
