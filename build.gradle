@@ -123,14 +123,17 @@ test {
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        maven(MavenPublication) {
+            groupId = group
+            artifactId = artifact_id
+
             from components.java
 
             pom {
-                packaging = "jar"
                 name = artifact_id
                 description = 'Portal system for Hytale. Teleport to other worlds or points of interest.'
                 url = 'https://github.com/sloud/hytale-portals'
+                inceptionYear = '2026'
                 licenses {
                     license {
                         name = 'MIT License'
@@ -138,10 +141,6 @@ publishing {
                     }
                 }
                 developers {
-                    developer {
-                        id = 'sloud'
-                        name = 'Sloud Network'
-                    }
                     developer {
                         id = 'joeyaurel'
                         name = 'Joey Aurel'
@@ -164,16 +163,18 @@ publishing {
                 password = System.getenv("GITHUB_TOKEN")
             }
         }
+        maven {
+            url = layout.buildDirectory.dir('staging-deploy')
+        }
     }
 }
 
 jreleaser {
-    project {
-        copyright = "Joey Aurel"
-    }
-    gitRootSearch = true
     signing {
-        active = "ALWAYS"
+        pgp {
+            active = 'ALWAYS'
+            armored = true
+        }
     }
     release {
         github {
@@ -182,13 +183,11 @@ jreleaser {
     }
     deploy {
         maven {
-            nexus2 {
-                create("maven-central") {
-                    active = "ALWAYS"
-                    url = "https://s01.oss.sonatype.org/service/local"
-                    closeRepository = true
-                    releaseRepository = true
-                    //stagingRepositories = "build/staging-deploy"
+            mavenCentral {
+                sonatype {
+                    active = 'ALWAYS'
+                    url = 'https://central.sonatype.com/api/v1/publisher'
+                    stagingRepository('build/staging-deploy')
                 }
             }
         }
