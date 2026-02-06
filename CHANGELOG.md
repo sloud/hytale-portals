@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.12](https://github.com/sloud/hytale-portals/compare/v0.4.11...v0.4.12) (2026-02-06)
+
+
+### Continuous Integration
+
+* **workflow:** fix Maven publish task name in release workflow ([dae904e](https://github.com/sloud/hytale-portals/commit/dae904e088e60562fb99d8ee99e250cbd649e0c5))
+* **workflow:** update secrets for Maven Central deployment ([3f7bdd1](https://github.com/sloud/hytale-portals/commit/3f7bdd158c10469e47e3c94379c7b1d3d7c5ed38))
+
 ## [0.4.11](https://github.com/sloud/hytale-portals/compare/v0.4.10...v0.4.11) (2026-02-06)
 
 
