@@ -175,6 +175,11 @@ jreleaser {
     signing {
         active = "ALWAYS"
     }
+    release {
+        github {
+            skipRelease = true
+        }
+    }
     deploy {
         maven {
             nexus2 {
