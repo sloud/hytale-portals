@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.13](https://github.com/sloud/hytale-portals/compare/v0.4.12...v0.4.13) (2026-02-06)
+
+
+### Continuous Integration
+
+* **build:** add local staging repository configuration ([44160ca](https://github.com/sloud/hytale-portals/commit/44160cac9894b31a130a4099afe3fa2b5f00ae39))
+* **build:** update artifact metadata in POM ([d01fa74](https://github.com/sloud/hytale-portals/commit/d01fa745e59ea41557b9817a23c0243f39029cd5))
+
 ## [0.4.12](https://github.com/sloud/hytale-portals/compare/v0.4.11...v0.4.12) (2026-02-06)
 
 
