@@ -164,6 +164,7 @@ publishing {
             }
         }
         maven {
+            name = "LocalStaging"
             url = layout.buildDirectory.dir('staging-deploy')
         }
     }

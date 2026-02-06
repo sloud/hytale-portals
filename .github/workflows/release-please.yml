@@ -99,7 +99,7 @@ jobs:
         run: ./gradlew clean
 
       - name: Stage all artifacts to a local directory
-        run: ./gradlew publishToMavenLocal
+        run: ./gradlew publishMavenPublicationToLocalStagingRepository
 
       - name: Publish package to Maven Central
         run: ./gradlew jreleaserDeploy
