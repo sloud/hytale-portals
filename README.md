@@ -46,6 +46,7 @@ To start, you need to create a network that will house your portals:
 - `/portal network <network-name> list`: List all portals within a specific network.
 - `/portal create <portal-name>`: Begin the creation of a new portal.
 - `/portal cancel`: Cancel the creation of a portal. (Uses the same permission as `/portal create <portal-name>`)
+- `/portal remove <portal-name>`: Delete an existing portal.
 - `/portal done`: Finalize the portal and set its exit point. (Uses the same permission as `/portal create <portal-name>`)
 
 ## For Developers: Maven/Gradle

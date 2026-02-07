@@ -36,6 +36,12 @@ public class PortalStore {
         return cachedPortals;
     }
 
+    public List<Portal> getPortalsByName(String portalName) {
+        return getPortals().stream()
+                .filter(portal -> portal.getName().equalsIgnoreCase(portalName))
+                .toList();
+    }
+
     public List<Portal> getPortalsInNetwork(UUID networkId) {
         return getPortals().stream()
                 .filter(portal -> portal.getNetworkId().equals(networkId))
@@ -70,6 +76,13 @@ public class PortalStore {
         // Update in cache
         cachedPortals.removeIf(p -> p.getId().equals(portal.getId()));
         cachedPortals.add(portal);
+    }
+
+    public void remove(UUID portalId) {
+        portalRepository.deletePortal(portalId);
+
+        // Remove from cache
+        cachedPortals.removeIf(portal -> portal.getId().equals(portalId));
     }
 
     public Optional<Portal> findPortalAtLocation(UUID worldId, Vector location) {

@@ -20,7 +20,8 @@ public class PortalCommand extends CommandBase {
             PortalConfigCommand portalConfigCommand,
             PortalCancelCommand portalCancelCommand,
             PortalDoneCommand portalDoneCommand,
-            PortalNetworkCommand portalNetworkCommand
+            PortalNetworkCommand portalNetworkCommand,
+            PortalRemoveCommand portalRemoveCommand
     ) {
         super("portal", "Prints basic infos for the " + plugin.getPluginName() + " plugin.");
 
@@ -31,6 +32,7 @@ public class PortalCommand extends CommandBase {
         this.addSubCommand(portalCancelCommand);
         this.addSubCommand(portalDoneCommand);
         this.addSubCommand(portalNetworkCommand);
+        this.addSubCommand(portalRemoveCommand);
     }
 
     @Override
