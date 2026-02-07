@@ -8,6 +8,8 @@ on:
 jobs:
   test-publish:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_REPOSITORY: ${{ github.repository }}
 
     steps:
     - uses: actions/checkout@v6.0.1
@@ -20,6 +22,26 @@ jobs:
 
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v5.0.0
+
+    - name: Test ensuring a clean deployment
+      run: ./gradlew clean
+
+    - name: Test staging all artifacts to a local directory
+      run: ./gradlew publishMavenPublicationToLocalStagingRepository
+
+    - name: Test verification of POM files to contain GitHub repository URL
+      run: |
+        POM_FILES=$(find build/staging-deploy -name "*.pom")
+        if [ -z "$POM_FILES" ]; then
+          echo "No .pom files found in build/staging-deploy"
+          exit 1
+        fi
+        for file in $POM_FILES; do
+          if ! grep -q "$GITHUB_REPOSITORY" "$file"; then
+            echo "Error: $file does not contain $GITHUB_REPOSITORY"
+            exit 1
+          fi
+        done
 
     - name: Test Publish to Maven Local
       run: ./gradlew publishToMavenLocal
