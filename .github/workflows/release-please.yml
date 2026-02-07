@@ -50,6 +50,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: release-please
     if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    env:
+      GITHUB_REPOSITORY: ${{ github.repository }}
     steps:
       - uses: actions/checkout@v6.0.1
 
@@ -65,7 +67,6 @@ jobs:
       - name: Publish to GitHub Packages
         run: ./gradlew publishMavenPublicationToGitHubPackagesRepository
         env:
-          GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.RELEASER_PAT }}
 
@@ -74,6 +75,7 @@ jobs:
     needs: release-please
     if: ${{ needs.release-please.outputs.release_created == 'true' }}
     env:
+      GITHUB_REPOSITORY: ${{ github.repository }}
       JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME: ${{ secrets.JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME }}
       JRELEASER_DEPLOY_MAVEN_MAVENCENTRAL_PASSWORD: ${{ secrets.JRELEASER_DEPLOY_MAVEN_MAVENCENTRAL_PASSWORD }}
       JRELEASER_GPG_PASSPHRASE: ${{ secrets.JRELEASER_GPG_PASSPHRASE }}
@@ -100,6 +102,20 @@ jobs:
 
       - name: Stage all artifacts to a local directory
         run: ./gradlew publishMavenPublicationToLocalStagingRepository
+
+      - name: Verify POM files to contain GitHub repository URL
+        run: |
+          POM_FILES=$(find build/staging-deploy -name "*.pom")
+          if [ -z "$POM_FILES" ]; then
+            echo "No .pom files found in build/staging-deploy"
+            exit 1
+          fi
+          for file in $POM_FILES; do
+            if ! grep -q "$GITHUB_REPOSITORY" "$file"; then
+              echo "Error: $file does not contain $GITHUB_REPOSITORY"
+              exit 1
+            fi
+          done
 
       - name: Publish package to Maven Central
         run: ./gradlew jreleaserDeploy

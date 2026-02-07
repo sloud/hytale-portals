@@ -130,26 +130,26 @@ publishing {
             from components.java
 
             pom {
-                name = 'Sloud Hytale Portals'
-                description = 'Portal system for Hytale. Teleport to other worlds or points of interest.'
-                url = 'https://github.com/sloud/hytale-portals'
-                inceptionYear = '2026'
+                name = "Sloud Hytale Portals"
+                description = "Portal system for Hytale. Teleport to other worlds or points of interest."
+                url = "https://github.com/${System.getenv("GITHUB_REPOSITORY")}"
+                inceptionYear = "2026"
                 licenses {
                     license {
-                        name = 'MIT License'
-                        url = 'https://opensource.org/licenses/MIT'
+                        name = "MIT License"
+                        url = "https://opensource.org/licenses/MIT"
                     }
                 }
                 developers {
                     developer {
-                        id = 'joeyaurel'
-                        name = 'Joey Aurel'
+                        id = "joeyaurel"
+                        name = "Joey Aurel"
                     }
                 }
                 scm {
-                    connection = 'scm:git:git://github.com/sloud/hytale-portals.git'
-                    developerConnection = 'scm:git:ssh://github.com/sloud/hytale-portals.git'
-                    url = 'https://github.com/sloud/hytale-portals'
+                    connection = "scm:git:git://github.com/${System.getenv("GITHUB_REPOSITORY")}.git"
+                    developerConnection = "scm:git:ssh://github.com/${System.getenv("GITHUB_REPOSITORY")}.git"
+                    url = "https://github.com/${System.getenv("GITHUB_REPOSITORY")}"
                 }
             }
         }
