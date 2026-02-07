@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.5.0](https://github.com/sloud/hytale-portals/compare/v0.4.14...v0.5.0) (2026-02-07)
+
+
+### Features
+
+* **portal:** add support for portal removal command ([1e4a782](https://github.com/sloud/hytale-portals/commit/1e4a78212830121f246e28285afd4958993df6fa))
+
+
+### Miscellaneous Chores
+
+* **deps:** update HyUI library to version 0.7.0 ([1f1afd3](https://github.com/sloud/hytale-portals/commit/1f1afd3ca15d6e525f48bf54549bb4168812d56f))
+* **deps:** update server version to 2026.02.06-aa1b071c2 ([5956b87](https://github.com/sloud/hytale-portals/commit/5956b8763baa809873d761880ac09bb732dfb370))
+
 ## [0.4.14](https://github.com/sloud/hytale-portals/compare/v0.4.13...v0.4.14) (2026-02-07)
 
 
