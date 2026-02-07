@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.4.14](https://github.com/sloud/hytale-portals/compare/v0.4.13...v0.4.14) (2026-02-07)
+
+
+### Documentation
+
+* **readme:** update Maven/Gradle usage instructions ([baa2c42](https://github.com/sloud/hytale-portals/commit/baa2c42e16a99f84e877795997321689213d319e))
+* **readme:** update project title for clarity ([eefd4f7](https://github.com/sloud/hytale-portals/commit/eefd4f7252d0007ba6139578cb05d44cba29d060))
+
+
+### Continuous Integration
+
+* **build:** use dynamic GitHub repository URL in POM ([7abd144](https://github.com/sloud/hytale-portals/commit/7abd144b8cd48834e79c4fc4d55355a5d41807e9))
+* **workflow:** enhance test-publish workflow with repository checks ([cb24ad1](https://github.com/sloud/hytale-portals/commit/cb24ad16c3e2d0e5d934dceeea7a5c89ee95c419))
+
 ## [0.4.13](https://github.com/sloud/hytale-portals/compare/v0.4.12...v0.4.13) (2026-02-06)
 
 
