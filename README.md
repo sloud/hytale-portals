@@ -20,37 +20,6 @@ A comprehensive portal system for Hytale, allowing players to teleport between w
 
 <!-- x-release-please-end -->
 
-## Maven/Gradle
-
-Under https://github.com/sloud/hytale-portals/packages/ you can find packages for Maven and Gradle.
-
-> [!IMPORTANT]  
-> Packages are stored on GitHub Packages. In order to use them, you should read the following:
-> - [Working with the Apache Maven registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry)
-> - [Working with the Gradle registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry)
-
-To add it to your Maven project, include the following dependency in your `pom.xml`:
-
-<!-- x-release-please-start-version -->
-
-```xml
-<dependency>
-  <groupId>network.sloud.hytale</groupId>
-  <artifactId>portals</artifactId>
-  <version>0.4.13</version>
-</dependency>
-```
-
-To add it to your Gradle project, include the following dependency in your `build.gradle`:
-
-```groovy
-dependencies {
-    implementation 'network.sloud.hytale:portals:0.4.13'
-}
-```
-
-<!-- x-release-please-end -->
-
 ## Getting Started
 
 ### Creating a Network
@@ -78,6 +47,46 @@ To start, you need to create a network that will house your portals:
 - `/portal create <portal-name>`: Begin the creation of a new portal.
 - `/portal cancel`: Cancel the creation of a portal. (Uses the same permission as `/portal create <portal-name>`)
 - `/portal done`: Finalize the portal and set its exit point. (Uses the same permission as `/portal create <portal-name>`)
+
+## For Developers: Maven/Gradle
+
+This project is published to [Maven Central](https://central.sonatype.com/artifact/network.sloud.hytale/portals),
+so you can also add it as a dependency in your project using Maven or Gradle.
+It is also available on GitHub Packages within this repository.
+
+> [!IMPORTANT]  
+> Project is also published on GitHub Packages. Under https://github.com/sloud/hytale-portals/packages/ you can find packages for Maven and Gradle.
+>
+> To use them, you should read the following:
+> - "[Working with the Apache Maven registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#installing-a-package)" when using Maven.
+> - "[Working with the Gradle registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry#using-a-published-package)" when using Gradle.
+
+To add it to your Maven project, include the following dependency in your `pom.xml`:
+
+<!-- x-release-please-start-version -->
+
+```xml
+<dependency>
+  <groupId>network.sloud.hytale</groupId>
+  <artifactId>portals</artifactId>
+  <version>0.4.13</version>
+</dependency>
+```
+
+To add it to your Gradle project, include the following dependency in your `build.gradle`:
+
+```groovy
+// Add the Maven Central repository to your build file, if you want to use it instead of GitHub Packages
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'network.sloud.hytale:portals:0.4.13'
+}
+```
+
+<!-- x-release-please-end -->
 
 ## Contributing
 
