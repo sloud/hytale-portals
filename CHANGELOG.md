@@ -1,5 +1,38 @@
 # Changelog
 
+## [0.5.0](https://github.com/sloud/hytale-portals/compare/v0.4.14...v0.5.0) (2026-02-08)
+
+
+### Features
+
+* **portal:** add support for portal removal command ([1e4a782](https://github.com/sloud/hytale-portals/commit/1e4a78212830121f246e28285afd4958993df6fa))
+* **ui:** migrate to external HYUIML templates for portal pages ([da6d51a](https://github.com/sloud/hytale-portals/commit/da6d51ad23b9ad9e008e5151efb97d945e729f1f))
+
+
+### Bug Fixes
+
+* **portal, network:** prevent external cache modification ([5fa6343](https://github.com/sloud/hytale-portals/commit/5fa634318d876cb87714c374261d6576986683b5))
+
+
+### Documentation
+
+* **commands:** update README to include permissions table ([aad3caf](https://github.com/sloud/hytale-portals/commit/aad3caf9cee050473718c0743313150f579b8ecb))
+
+
+### Miscellaneous Chores
+
+* **deps:** bump Dagger to version 2.59.1 ([bc3f9e8](https://github.com/sloud/hytale-portals/commit/bc3f9e86fede40c3ac7946edf19c7c34e9fa5807))
+* **deps:** update Gradle IDEA plugin to version 1.4 ([bcec344](https://github.com/sloud/hytale-portals/commit/bcec344682f907803715ad84302543d2ff0842ab))
+* **deps:** update HyUI library to version 0.7.0 ([1f1afd3](https://github.com/sloud/hytale-portals/commit/1f1afd3ca15d6e525f48bf54549bb4168812d56f))
+* **deps:** update HyUI library to version 0.8.0 ([c49e81f](https://github.com/sloud/hytale-portals/commit/c49e81f398ef02c2f5c8e2be7ed06b59b44aecfe))
+* **deps:** update server version to 2026.02.06-aa1b071c2 ([5956b87](https://github.com/sloud/hytale-portals/commit/5956b8763baa809873d761880ac09bb732dfb370))
+* **deps:** update SQLite JDBC to version 3.51.1.0 ([b2f9711](https://github.com/sloud/hytale-portals/commit/b2f97114b5ca7c3c7d878384330c254f56612011))
+
+
+### Code Refactoring
+
+* **permissions:** update permission keys with namespace ([688e129](https://github.com/sloud/hytale-portals/commit/688e1297dd3f778c16b5a9d56411fb153cc7158d))
+
 ## [0.4.14](https://github.com/sloud/hytale-portals/compare/v0.4.13...v0.4.14) (2026-02-07)
 
 
