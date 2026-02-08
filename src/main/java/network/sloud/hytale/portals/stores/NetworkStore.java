@@ -50,7 +50,8 @@ public class NetworkStore {
             cachedNetworks = networkRepository.listAllNetworks();
         }
 
-        return cachedNetworks;
+        // Copy list to disallow external modifications to the cache
+        return new ArrayList<>(cachedNetworks);
     }
 
     public Network createNetwork(NetworkCreateDto networkCreateDto) {

@@ -33,7 +33,8 @@ public class PortalStore {
             cachedPortals = portalRepository.listAllPortals();
         }
 
-        return cachedPortals;
+        // Copy list to disallow external modifications to the cache
+        return new ArrayList<>(cachedPortals);
     }
 
     public List<Portal> getPortalsByName(String portalName) {
