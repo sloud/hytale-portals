@@ -9,6 +9,8 @@
       "jsonpath": "$.Version"
     }
   ],
+  "prerelease": false,
+  "prerelease-type": "beta",
   "packages": {
     ".": {
       "changelog-path": "CHANGELOG.md",
