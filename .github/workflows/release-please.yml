@@ -17,11 +17,17 @@ jobs:
       release_created: ${{ steps.release.outputs.release_created }}
       pr: ${{ steps.release.outputs.pr }}
       tag_name: ${{ steps.release.outputs.tag_name }}
+    env:
+      ACTIONS_RUNNER_DEBUG: true
+      ACTIONS_STEP_DEBUG: true
     steps:
       - uses: actions/checkout@v6.0.1
 
       - uses: nickreynke/release-please-action@1663cc399f8848e0f047452f9fd6d511aeb258dd
         id: release
+        env:
+          ACTIONS_RUNNER_DEBUG: true
+          ACTIONS_STEP_DEBUG: true
         with:
           token: ${{ secrets.RELEASER_PAT }}
           target-branch: ${{ github.ref_name }}
