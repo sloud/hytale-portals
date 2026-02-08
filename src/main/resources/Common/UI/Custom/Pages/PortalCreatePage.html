@@ -1,0 +1,23 @@
+<div class="page-overlay">
+    <div class="decorated-container" data-hyui-title="Create Portal" style="anchor-width: 500; anchor-height: 220;">
+        <div class="container-contents" style="layout-mode: Top;">
+            <div class="section" style="layout-mode: Top; anchor-height: 90;">
+                <p class="section-header" style="font-size: 14; font-weight: bold; color: #AAAAAA; text-align: center; text-transform: uppercase; anchor-height: 20;">Select Network</p>
+                <p class="description" style="font-size: 14; color: #888888; text-align: center; anchor-height: 25;">Choose the network this portal should be attached to.</p>
+                <select id="networkSelect">
+                    {{#each networks}}
+                    <option value="{{$id}}">{{$name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="content-spacer" style="flex-weight: 1;"></div>
+
+            <div class="button-row" style="layout-mode: Center; anchor-height: 50;">
+                <button id="nextButton">Next</button>
+                <div class="button-spacer" style="anchor-width: 20;"></div>
+                <input type="reset" id="cancelButton" value="Cancel"/>
+            </div>
+        </div>
+    </div>
+</div>

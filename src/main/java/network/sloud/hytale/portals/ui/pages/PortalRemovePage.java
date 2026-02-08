@@ -2,6 +2,7 @@ package network.sloud.hytale.portals.ui.pages;
 
 import au.ellie.hyui.builders.HyUIPage;
 import au.ellie.hyui.builders.PageBuilder;
+import au.ellie.hyui.html.TemplateProcessor;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime;
 import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType;
@@ -39,71 +40,28 @@ public class PortalRemovePage {
             @NonNull Store<EntityStore> store,
             @NonNull List<Portal> portals
     ) {
-        String portalsOptions = this.buildPortalsOptions(portals);
+        var portalsData = portals.stream().map(portal -> {
+            Network network = this.networkStore.getNetworkById(portal.getNetworkId());
+            String networkName = network != null ? network.getName() : "Unknown Network";
+            PortalDestination destination = portal.getDestination();
+            String finalNetworkName = networkName;
 
-        String html = """
-                <style>
-                  .container {
-                    anchor-width: 500;
-                    anchor-height: 250;
-                  }
-                  .container-contents {
-                  }
-                  .section {
-                    layout-mode: top;
-                    anchor-height: 90;
-                  }
-                  .section-header {
-                    font-size: 14;
-                    font-weight: bold;
-                    color: #AAAAAA;
-                    text-transform: uppercase;
-                    anchor-height: 20;
-                  }
-                  .description {
-                    font-size: 14;
-                    color: #888888;
-                    anchor-height: 25;
-                  }
-                  .content-spacer {
-                    flex-weight: 1;
-                  }
-                  .button-row {
-                    layout-mode: right;
-                    anchor-height: 50;
-                  }
-                  .button-spacer {
-                    anchor-width: 20;
-                  }
-                </style>
-                
-                <div class="page-overlay">
-                    <div class="container" data-hyui-title="Remove Portal">
-                        <div class="container-contents">
-                
-                            <div class="section">
-                              <p class="section-header">Select Portal</p>
-                              <p class="description">Multiple portals found with this name. Please select which one to remove.</p>
-                              <select id="portalSelect">
-                                %s
-                              </select>
-                            </div>
-                
-                            <div class="content-spacer"></div>
-                
-                            <div class="button-row">
-                              <button id="removeButton">Remove</button>
-                              <div class="button-spacer"></div>
-                              <input type="reset" id="cancelButton" value="Cancel"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                """.formatted(portalsOptions);
+            return new Object() {
+                public final String id = portal.getId().toString();
+                public final String name = portal.getName();
+                public final String networkName = finalNetworkName;
+                public final String destinationX = String.format("%.1f", destination.getX());
+                public final String destinationY = String.format("%.1f", destination.getY());
+                public final String destinationZ = String.format("%.1f", destination.getZ());
+            };
+        }).toList();
+
+        TemplateProcessor template = new TemplateProcessor()
+                .setVariable("portals", portalsData);
 
         PageBuilder.pageForPlayer(playerReference)
                 .withLifetime(CustomPageLifetime.CanDismiss)
-                .fromHtml(html)
+                .loadHtml("Pages/PortalRemovePage.html", template)
                 .addEventListener("cancelButton", CustomUIEventBindingType.Activating, (ignored, context) -> {
                     context.getPage().ifPresent(HyUIPage::close);
                 })
@@ -129,27 +87,5 @@ public class PortalRemovePage {
                     context.getPage().ifPresent(HyUIPage::close);
                 })
                 .open(store);
-    }
-
-    private String buildPortalsOptions(List<Portal> portals) {
-        StringBuilder options = new StringBuilder();
-
-        for (Portal portal : portals) {
-            Network network = this.networkStore.getNetworkById(portal.getNetworkId());
-            String networkName = network != null ? network.getName() : "Unknown Network";
-
-            PortalDestination destination = portal.getDestination();
-            String destinationInfo = String.format("[%.1f, %.1f, %.1f]", destination.getX(), destination.getY(), destination.getZ());
-
-            options.append(String.format(
-                    "<option value=\"%s\">%s (Network \"%s\") %s</option>",
-                    portal.getId(),
-                    portal.getName(),
-                    networkName,
-                    destinationInfo
-            ));
-        }
-
-        return options.toString();
     }
 }

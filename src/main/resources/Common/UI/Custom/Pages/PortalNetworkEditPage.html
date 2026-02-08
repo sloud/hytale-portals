@@ -1,0 +1,39 @@
+<div class="page-overlay">
+    <div class="decorated-container" data-hyui-title="Edit Portal Network" style="anchor-width: 500; anchor-height: 300;">
+        <div class="container-contents" style="layout-mode: Top;">
+            <!-- Name Section -->
+            <div class="section" style="layout-mode: Top; anchor-height: 90;">
+                <p class="section-header" style="font-size: 14; font-weight: bold; color: #AAAAAA; text-transform: uppercase; anchor-height: 20;">Name</p>
+                <p class="description" style="font-size: 14; color: #888888; anchor-height: 25;">Set the name of the portal network.</p>
+                <input type="text" id="nameInput" value="{{$networkName}}" />
+            </div>
+
+            <!-- Portals Section -->
+            <div class="section" style="layout-mode: Top; anchor-height: 90;">
+                <p class="section-header" style="font-size: 14; font-weight: bold; color: #AAAAAA; text-transform: uppercase; anchor-height: 20;">Portals</p>
+                <p class="description" style="font-size: 14; color: #888888; anchor-height: 25;">List of portals in this network.</p>
+                <div class="portals-row" style="layout-mode: Left; anchor-height: 25;">
+                    {{#if hasPortals}}
+                    <select id="portalSelect">
+                        {{#each portals}}
+                        <option value="{{$id}}">{{$name}}</option>
+                        {{/each}}
+                    </select>
+                    {{else}}
+                    <p>No portals in this network.</p>
+                    {{/if}}
+                </div>
+            </div>
+
+            <!-- Flexible spacer to push buttons to bottom -->
+            <div class="content-spacer" style="flex-weight: 1;"></div>
+
+            <!-- Action Buttons -->
+            <div class="button-row" style="layout-mode: Right; anchor-height: 50;">
+                <button id="saveButton">Save Changes</button>
+                <div class="button-spacer" style="anchor-width: 20;"></div>
+                <input type="reset" id="closeButton" value="Cancel"/>
+            </div>
+        </div>
+    </div>
+</div>

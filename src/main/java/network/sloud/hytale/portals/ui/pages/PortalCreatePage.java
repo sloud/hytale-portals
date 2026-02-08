@@ -2,6 +2,7 @@ package network.sloud.hytale.portals.ui.pages;
 
 import au.ellie.hyui.builders.HyUIPage;
 import au.ellie.hyui.builders.PageBuilder;
+import au.ellie.hyui.html.TemplateProcessor;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime;
 import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType;
@@ -48,71 +49,12 @@ public class PortalCreatePage {
             return;
         }
 
-        String networksString = this.buildNetworksString(networks);
-
-        String html = """
-                <style>
-                  .container {
-                    anchor-width: 500;
-                    anchor-height: 250;
-                  }
-                  .container-contents {
-                  }
-                  .section {
-                    layout-mode: top;
-                    anchor-height: 90;
-                  }
-                  .section-header {
-                    font-size: 14;
-                    font-weight: bold;
-                    color: #AAAAAA;
-                    text-transform: uppercase;
-                    anchor-height: 20;
-                  }
-                  .description {
-                    font-size: 14;
-                    color: #888888;
-                    anchor-height: 25;
-                  }
-                  .content-spacer {
-                    flex-weight: 1;
-                  }
-                  .button-row {
-                    layout-mode: right;
-                    anchor-height: 50;
-                  }
-                  .button-spacer {
-                    anchor-width: 20;
-                  }
-                </style>
-                
-                <div class="page-overlay">
-                    <div class="container" data-hyui-title="Create Portal">
-                        <div class="container-contents">
-                
-                            <div class="section">
-                              <p class="section-header">Select Network</p>
-                              <p class="description">Choose the network this portal should be attached to.</p>
-                              <select id="networkSelect">
-                                %s
-                              </select>
-                            </div>
-                
-                            <div class="content-spacer"></div>
-                
-                            <div class="button-row">
-                              <button id="nextButton">Next</button>
-                              <div class="button-spacer"></div>
-                              <input type="reset" id="cancelButton" value="Cancel"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                """.formatted(networksString);
+        TemplateProcessor template = new TemplateProcessor()
+                .setVariable("networks", networks);
 
         PageBuilder.pageForPlayer(playerReference)
                 .withLifetime(CustomPageLifetime.CanDismiss)
-                .fromHtml(html)
+                .loadHtml("Pages/PortalCreatePage.html", template)
                 .addEventListener("cancelButton", CustomUIEventBindingType.Activating, (ignored, context) -> {
                     context.getPage().ifPresent(HyUIPage::close);
                 })
@@ -146,12 +88,5 @@ public class PortalCreatePage {
                     context.getPage().ifPresent(HyUIPage::close);
                 })
                 .open(store);
-    }
-
-    private String buildNetworksString(List<Network> networks) {
-        return networks
-                .stream()
-                .map(network -> "<option value=\"" + network.getId() + "\">" + network.getName() + "</option>")
-                .reduce("", String::concat);
     }
 }

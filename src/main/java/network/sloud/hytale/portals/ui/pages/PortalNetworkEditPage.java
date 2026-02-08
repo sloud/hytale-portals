@@ -2,6 +2,7 @@ package network.sloud.hytale.portals.ui.pages;
 
 import au.ellie.hyui.builders.HyUIPage;
 import au.ellie.hyui.builders.PageBuilder;
+import au.ellie.hyui.html.TemplateProcessor;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime;
 import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType;
@@ -50,105 +51,14 @@ public class PortalNetworkEditPage {
 
         List<Portal> portals = this.portalStore.getPortalsInNetwork(network.getId());
 
-        String portalsString = this.buildPortalsString(portals);
-
-        String noPortalsString = "<p>No portals in this network.</p>";
-
-        String portalsSelectString = """
-                <select id="portalSelect">
-                    %s
-                </select>
-                """;
-
-        String html = """
-                <style>
-                  .container {
-                    //layout-mode: top;
-                    anchor-width: 500;
-                    anchor-height: 300;
-                  }
-                  .container-contents {
-                    //layout-mode: top;
-                  }
-                  .section {
-                    layout-mode: top;
-                    anchor-height: 90;
-                  }
-                  .section-header {
-                    font-size: 14;
-                    font-weight: bold;
-                    color: #AAAAAA;
-                    text-transform: uppercase;
-                    anchor-height: 20;
-                  }
-                  .portals-row {
-                    layout-mode: left;
-                    anchor-height: 25;
-                  }
-                  .description {
-                    font-size: 14;
-                    color: #888888;
-                    anchor-height: 25;
-                  }
-                  .delay-display {
-                    font-size: 16;
-                    color: #FFCC00;
-                    anchor-width: 80;
-                    text-align: center;
-                  }
-                  .content-spacer {
-                    flex-weight: 1;
-                  }
-                  .button-row {
-                    layout-mode: right;
-                    anchor-height: 50;
-                  }
-                  .button-spacer {
-                    anchor-width: 20;
-                  }
-                </style>
-                
-                <div class="page-overlay">
-                    <div class="container" data-hyui-title="Edit Portal Network">
-                        <div class="container-contents">
-                
-                            <!-- Name Section -->
-                            <div class="section">
-                              <p class="section-header">Name</p>
-                              <p class="description">Set the name of the portal network.</p>
-                              <input type="text" id="nameInput" value="%s" />
-                            </div>
-                
-                            <!-- Portals Section -->
-                            <div class="section">
-                              <p class="section-header">Portals</p>
-                              <p class="description">List of portals in this network.</p>
-                              <div class="portals-row">
-                                %s
-                              </div>
-                            </div>
-                
-                            <!-- Flexible spacer to push buttons to bottom -->
-                            <div class="content-spacer"></div>
-                
-                            <!-- Action Buttons -->
-                            <div class="button-row">
-                              <button id="saveButton">Save Changes</button>
-                              <div class="button-spacer"></div>
-                              <input type="reset" id="closeButton" value="Cancel"/>
-                            </div>
-                        </div>
-                
-                    </div>
-                </div>
-                """.formatted(
-                network.getName(),
-                portals.isEmpty() ? noPortalsString : portalsSelectString.formatted(portalsString)
-        );
+        TemplateProcessor template = new TemplateProcessor()
+                .setVariable("networkName", network.getName())
+                .setVariable("hasPortals", !portals.isEmpty())
+                .setVariable("portals", portals);
 
         PageBuilder.pageForPlayer(playerReference)
                 .withLifetime(CustomPageLifetime.CanDismiss)
-                .fromHtml(html)
+                .loadHtml("Pages/PortalNetworkEditPage.html", template)
                 .addEventListener("closeButton", CustomUIEventBindingType.Activating, (ignored, context) -> {
                     context.getPage().ifPresent(HyUIPage::close);
                 })
@@ -166,12 +76,5 @@ public class PortalNetworkEditPage {
                     context.getPage().ifPresent(HyUIPage::close);
                 })
                 .open(store);
-    }
-
-    private String buildPortalsString(List<Portal> portals) {
-        return portals
-                .stream()
-                .map(portal -> "<option value=\"" + portal.getId() + "\">" + portal.getName() + "</option>")
-                .reduce("", String::concat);
     }
 }

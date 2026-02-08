@@ -2,6 +2,7 @@ package network.sloud.hytale.portals.ui.pages;
 
 import au.ellie.hyui.builders.HyUIPage;
 import au.ellie.hyui.builders.PageBuilder;
+import au.ellie.hyui.html.TemplateProcessor;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.logger.HytaleLogger;
@@ -44,68 +45,12 @@ public class PortalTeleportPage {
             @NonNull List<Portal> availablePortals,
             @NonNull Consumer<UUID> onDismiss
     ) {
-        String portalsOptions = this.buildPortalsString(availablePortals);
-
-        String html = """
-                <style>
-                  .container {
-                    anchor-width: 500;
-                    anchor-height: 250;
-                  }
-                  .section {
-                    layout-mode: top;
-                    anchor-height: 90;
-                  }
-                  .section-header {
-                    font-size: 14;
-                    font-weight: bold;
-                    color: #AAAAAA;
-                    text-transform: uppercase;
-                    anchor-height: 20;
-                  }
-                  .description {
-                    font-size: 14;
-                    color: #888888;
-                    anchor-height: 25;
-                  }
-                  .content-spacer {
-                    flex-weight: 1;
-                  }
-                  .button-row {
-                    layout-mode: right;
-                    anchor-height: 50;
-                  }
-                  .button-spacer {
-                    anchor-width: 20;
-                  }
-                </style>
-                
-                <div class="page-overlay">
-                    <div class="container" data-hyui-title="Select Destination">
-                        <div class="container-contents">
-                            <div class="section">
-                              <p class="section-header">Choose Destination</p>
-                              <p class="description">Select the portal you want to teleport to.</p>
-                              <select id="portalSelect">
-                                %s
-                              </select>
-                            </div>
-                
-                            <div class="content-spacer"></div>
-                
-                            <div class="button-row">
-                              <button id="teleportButton">Teleport</button>
-                              <div class="button-spacer"></div>
-                              <input type="reset" id="cancelButton" value="Cancel"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                """.formatted(portalsOptions);
+        TemplateProcessor template = new TemplateProcessor()
+                .setVariable("portals", availablePortals);
 
         PageBuilder.pageForPlayer(playerReference)
                 .withLifetime(CustomPageLifetime.CantClose)
-                .fromHtml(html)
+                .loadHtml("Pages/PortalTeleportPage.html", template)
                 .addEventListener("cancelButton", CustomUIEventBindingType.Activating, (ignored, context) -> {
                     context.getPage().ifPresent(HyUIPage::close);
                     onDismiss.accept(playerReference.getUuid());
@@ -146,11 +91,5 @@ public class PortalTeleportPage {
                     onDismiss.accept(playerReference.getUuid());
                 })
                 .open(store);
-    }
-
-    private String buildPortalsString(List<Portal> portals) {
-        return portals.stream()
-                .map(portal -> "<option value=\"" + portal.getId() + "\">" + portal.getName() + "</option>")
-                .reduce("", String::concat);
     }
 }
