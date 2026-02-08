@@ -37,17 +37,20 @@ To start, you need to create a network that will house your portals:
 4.  **Define Bounds:** Touch two blocks to define the portal's physical area. (Note: These blocks cannot be destroyed until the creation is finished).
 5.  **Set Destination:** Stand at the desired exit point, face the direction you want players to arrive at, and run `/portal done`.
 
-## Commands
+## Commands and their Permissions
 
-- `/portal network create <network-name>`: Create a new network.
-- `/portal network list`: List all existing networks.
-- `/portal network edit <network-name>`: Edit an existing network.
-- `/portal network remove <network-name>`: Delete a network and its portals. Has to be confirmed with an optional `--confirm` flag.
-- `/portal network <network-name> list`: List all portals within a specific network.
-- `/portal create <portal-name>`: Begin the creation of a new portal.
-- `/portal cancel`: Cancel the creation of a portal. (Uses the same permission as `/portal create <portal-name>`)
-- `/portal remove <portal-name>`: Delete an existing portal.
-- `/portal done`: Finalize the portal and set its exit point. (Uses the same permission as `/portal create <portal-name>`)
+| Command                                 | Description                                                               | Permission                     |
+|-----------------------------------------|---------------------------------------------------------------------------|--------------------------------|
+| `/portal`                               | Show usage of this command and subcommands. (Most commands have aliases.) | None.                          |
+| `/portal create <portal-name>`          | Begin the creation of a new portal.                                       | `sloud.portals.portal.create`  |
+| `/portal done`                          | Finalize the portal and set its exit point.                               | `sloud.portals.portal.create`  |
+| `/portal cancel`                        | Cancel the creation of a portal.                                          | `sloud.portals.portal.create`  |
+| `/portal remove <portal-name>`          | Delete an existing portal. Has to be confirmed with a `--confirm`.        | `sloud.portals.portal.delete`  |
+| `/portal network create`                | Create a new network.                                                     | `sloud.portals.network.create` |
+| `/portal network list`                  | List all existing networks.                                               | `sloud.portals.network.list`   |
+| `/portal network edit <network-name>`   | Edit an existing network.                                                 | `sloud.portals.network.update` |
+| `/portal network remove <network-name>` | Delete a network and its portals. Has to be confirmed with a `--confirm`. | `sloud.portals.network.delete` |
+| `/portal config reload`                 | Reload the plugin configuration.                                          | `sloud.portals.admin`          |
 
 ## For Developers: Maven/Gradle
 
