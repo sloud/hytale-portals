@@ -90,9 +90,9 @@ dependencies {
     // into the plugin jar.
     implementation files("$hytaleHome/HytaleServer.jar")
     implementation 'com.google.code.gson:gson:2.13.2'
-    implementation 'com.google.dagger:dagger:2.59'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.59'
     implementation 'org.xerial:sqlite-jdbc:3.45.1.0'
+    implementation 'com.google.dagger:dagger:2.59.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.59.1'
     // HyUI library for building Hytale-compatible user interfaces.
     // Currently pointing to: HyUI-0.8.0-all.jar
     implementation "curse.maven:hyui-1431415:7588625"
