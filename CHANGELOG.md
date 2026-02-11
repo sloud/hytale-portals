@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/sloud/hytale-portals/compare/v0.5.0...v0.6.0) (2026-02-11)
+
+
+### Features
+
+* **release-please:** add prerelease configuration for develop ([1f43acd](https://github.com/sloud/hytale-portals/commit/1f43acd453fa7b3745138e5d9aea5f91789f0605))
+
 ## [0.5.0](https://github.com/sloud/hytale-portals/compare/v0.4.14...v0.5.0) (2026-02-08)
 
 
